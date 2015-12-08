@@ -1,7 +1,7 @@
 {
-  "name": "game-time-starter-kit",
+  "name": "Chess Trainer",
   "version": "1.0.0",
-  "description": "A starter kit for Turing School's Game Time project.",
+  "description": "A Chess Trainer for Turing School's Game Time project.",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/turingschool-examples/game-time-starter-kit.git"
+    "url": "https://github.com/jphoenix86/chess_trainer.git"
   },
-  "author": "Steve Kinney",
+  "author": "Justin Holzmann and George Hudson",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/turingschool-examples/game-time-starter-kit/issues"
