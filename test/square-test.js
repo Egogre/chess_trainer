@@ -3,6 +3,7 @@ const assert = chai.assert;
 
 var Board = require('../lib/board')
 var Square = require('../lib/square')
+var Piece = require('../lib/piece')
 
 describe('Square', function () {
   beforeEach( function () {
@@ -28,8 +29,10 @@ describe('Square', function () {
   it('should know a piece can move to it', function () {
     let square = new Square (this.board, 3, 5);
     let squareTwo = new Square (this.board, 3, 6);
-    whitePawn = new WhitePawn (squareTwo, "white")
-    squareTwo.piece = whitePawn
-    assert.equal(square.legalPieces, [whitePawn]);
+    let piece = new Piece (squareTwo, "white")
+    squareTwo.piece = piece
+    this.board.squares.push(square);
+    this.board.squares.push(squareTwo);
+    assert.include(square.legalPieces(), piece);
   })
 });

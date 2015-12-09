@@ -19,6 +19,5 @@ describe('Board', function () {
     board.squares.push(square);
     var legalPieces = board.canMoveHere(square);
     assert.include(legalPieces, piece);
-
   });
 });
