@@ -24,4 +24,12 @@ describe('Square', function () {
     let square = new Square (this.board, 3, 5);
     assert.equal(square.board, this.board);
   })
+
+  it('should know a piece can move to it', function () {
+    let square = new Square (this.board, 3, 5);
+    let squareTwo = new Square (this.board, 3, 6);
+    whitePawn = new WhitePawn (squareTwo, "white")
+    squareTwo.piece = whitePawn
+    assert.equal(square.legalPieces, [whitePawn]);
+  })
 });
