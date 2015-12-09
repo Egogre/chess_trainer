@@ -1,5 +1,5 @@
 {
-  "name": "Chess Trainer",
+  "name": "ChessTrainer",
   "version": "1.0.0",
   "description": "A Chess Trainer for Turing School's Game Time project.",
   "main": "index.js",
