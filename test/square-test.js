@@ -24,15 +24,34 @@ describe('Square', function () {
   it('should know the board it belongs to', function () {
     let square = new Square (this.board, 3, 5);
     assert.equal(square.board, this.board);
-  })
+  });
 
   it('should know a piece can move to it', function () {
     let square = new Square (this.board, 3, 5);
     let squareTwo = new Square (this.board, 3, 6);
-    let piece = new Piece (squareTwo, "white")
-    squareTwo.piece = piece
+    let piece = new Piece (squareTwo, "white");
+    squareTwo.piece = piece;
     this.board.squares.push(square);
     this.board.squares.push(squareTwo);
     assert.include(square.legalPieces(), piece);
-  })
+  });
+
+  it('should remove piece from the board when another piece enters', function () {
+    let square = new Square (this.board, 3, 5);
+    let piece = new Piece (square, "black");
+    square.piece = piece;
+    let squareTwo = new Square (this.board, 3, 6);
+    let pieceTwo = new Piece (squareTwo, "white");
+    squareTwo.piece = pieceTwo;
+    this.board.squares.push(square);
+    this.board.squares.push(squareTwo);
+    var preCount = this.board.pieceCount();
+
+    piece.move(squareTwo);
+
+    assert.equal(this.board.pieceCount(), (preCount - 1));
+    assert.equal(squareTwo.piece, piece);
+    assert.equal(piece.square, squareTwo);
+    assert.equal(pieceTwo.square, null);
+  });
 });
