@@ -35,4 +35,18 @@ describe('Board', function () {
     var legalPieces = board.canMoveHere(square);
     assert.include(legalPieces, piece);
   });
+
+  it('knows how many pieces are on the board', function () {
+    let board = new Board ();
+    let square = new Square (board, 4, 4);
+    let piece = new Piece (square, "black");
+    square.piece = piece;
+    let squareTwo = new Square (board, 4, 6);
+    let pieceTwo = new Piece (squareTwo, "white");
+    squareTwo.piece = pieceTwo;
+    board.squares.push(square);
+    board.squares.push(squareTwo);
+
+    assert.equal(board.pieceCount(), 2);
+  });
 });
