@@ -44,6 +44,27 @@ describe('King', function () {
     assert(this.king.canMoveTo(squareSeven));
     assert(this.king.canMoveTo(squareEight));
     assert(this.king.canMoveTo(squareNine));
-  })
+  });
 
+  it('should know it cant move to a given empty space two squares away', function () {
+    let squareTwo = new Square(this.board, 3, 6);
+    let squareThree = new Square(this.board, 3, 7);
+    let squareFour = new Square(this.board, 0, 4);
+    let squareFive = new Square(this.board, 1, 4);
+    let squareSix = new Square(this.board, 2, 4);
+
+    assert.equal(this.king.canMoveTo(squareTwo), false);
+    assert.equal(this.king.canMoveTo(squareThree), false);
+    assert.equal(this.king.canMoveTo(squareFour), false);
+    assert.equal(this.king.canMoveTo(squareFive), false);
+    assert.equal(this.king.canMoveTo(squareSix), false);
+  });
+
+  it('should know it cant move to a given ally occupied space', function () {
+    let squareTwo = new Square(this.board, 2, 6);
+    let piece = new Piece(squareTwo, 'black');
+    squareTwo.piece = piece;
+
+    assert.equal(this.king.canMoveTo(squareTwo), false);
+  });
 });
