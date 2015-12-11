@@ -10,22 +10,58 @@ describe('Queen', function () {
 
   beforeEach (function () {
     this.board = new Board ();
-    this.square = new Square (this.board, 1, 6);
+    this.board.addSquaresToBoard();
+    this.square = this.board.findSquare(1, 6)
+    this.queen = new Queen (this.square, "black");
+    this.square.piece = this.queen;
   });
 
   it('should instantiate a new piece', function () {
-    let queen = new Queen ();
-    assert.isObject(queen);
+    assert.isObject(this.queen);
   });
 
   it('should know its square', function () {
-    let queen = new Queen (this.square, "black");
-    assert.equal(queen.square, this.square);
+    assert.equal(this.queen.square, this.square);
   });
 
   it('should know its color', function () {
-    let queen = new Queen (this.square, "black");
-    assert.equal(queen.color, "black");
+    assert.equal(this.queen.color, "black");
+  });
+
+  it('should know if it can move up to any given empty spaces', function () {
+    let squareTwo = this.board.findSquare (2, 6);
+    let squareThree = this.board.findSquare (3, 6);
+    let squareFour = this.board.findSquare (4, 6);
+    let squareFive = this.board.findSquare (5, 6);
+    let squareSix = this.board.findSquare (6, 6);
+    let squareSeven = this.board.findSquare (7, 6);
+
+    assert(this.queen.canMoveTo(squareTwo));
+    assert(this.queen.canMoveTo(squareThree));
+    assert(this.queen.canMoveTo(squareFour));
+    assert(this.queen.canMoveTo(squareFive));
+    assert(this.queen.canMoveTo(squareSix));
+    assert(this.queen.canMoveTo(squareSeven));
+  });
+
+  it('should move any direction given empty spaces', function () {
+    let squareTwo = this.board.findSquare (0, 6);
+    let squareThree = this.board.findSquare (1, 7);
+    let squareFour = this.board.findSquare (1, 2);
+    let squareFive = this.board.findSquare (5, 6);
+    let squareSix = this.board.findSquare (0, 5);
+    let squareSeven = this.board.findSquare (0, 7);
+    let squareEight = this.board.findSquare (2, 5);
+    let squareNine = this.board.findSquare (2, 7);
+
+    assert(this.queen.canMoveTo(squareTwo));
+    assert(this.queen.canMoveTo(squareThree));
+    assert(this.queen.canMoveTo(squareFour));
+    assert(this.queen.canMoveTo(squareFive));
+    assert(this.queen.canMoveTo(squareSix));
+    assert(this.queen.canMoveTo(squareSeven));
+    assert(this.queen.canMoveTo(squareEight));
+    assert(this.queen.canMoveTo(squareNine));
   });
 
 });
