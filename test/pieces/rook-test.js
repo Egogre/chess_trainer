@@ -10,22 +10,51 @@ describe('Rook', function () {
 
   beforeEach (function () {
     this.board = new Board ();
-    this.square = new Square (this.board, 1, 6);
+    this.board.addSquaresToBoard();
+    this.square = this.board.findSquare(1, 6)
+    this.rook = new Rook (this.square, "black");
+    this.square.piece = this.rook;
   });
 
   it('should instantiate a new piece', function () {
-    let rook = new Rook ();
-    assert.isObject(rook);
+    assert.isObject(this.rook);
   });
 
   it('should know its square', function () {
-    let rook = new Rook (this.square, "black");
-    assert.equal(rook.square, this.square);
+    assert.equal(this.rook.square, this.square);
   });
 
   it('should know its color', function () {
-    let rook = new Rook (this.square, "black");
-    assert.equal(rook.color, "black");
+    assert.equal(this.rook.color, "black");
+  });
+
+  it('should know if it can move up to any given empty spaces', function () {
+    let squareTwo = this.board.findSquare (2, 6);
+    let squareThree = this.board.findSquare (3, 6);
+    let squareFour = this.board.findSquare (4, 6);
+    let squareFive = this.board.findSquare (5, 6);
+    let squareSix = this.board.findSquare (6, 6);
+    let squareSeven = this.board.findSquare (7, 6);
+
+    assert(this.rook.canMoveTo(squareTwo));
+    assert(this.rook.canMoveTo(squareThree));
+    assert(this.rook.canMoveTo(squareFour));
+    assert(this.rook.canMoveTo(squareFive));
+    assert(this.rook.canMoveTo(squareSix));
+    assert(this.rook.canMoveTo(squareSeven));
+  });
+
+  it('should move north, south, east, west given empty spaces', function () {
+    let squareTwo = this.board.findSquare (0, 6);
+    let squareThree = this.board.findSquare (1, 7);
+    let squareFour = this.board.findSquare (1, 2);
+    let squareFive = this.board.findSquare (5, 6);
+
+
+    assert(this.rook.canMoveTo(squareTwo));
+    assert(this.rook.canMoveTo(squareThree));
+    assert(this.rook.canMoveTo(squareFour));
+    assert(this.rook.canMoveTo(squareFive));
   });
 
 });
