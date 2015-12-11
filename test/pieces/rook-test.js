@@ -57,4 +57,38 @@ describe('Rook', function () {
     assert(this.rook.canMoveTo(squareFive));
   });
 
+  it('should not move diagonally', function () {
+    let squareTwo = this.board.findSquare (0, 5);
+    let squareThree = this.board.findSquare (0, 7);
+    let squareFour = this.board.findSquare (2, 5);
+    let squareFive = this.board.findSquare (2, 7);
+
+
+    assert.equal(this.rook.canMoveTo(squareTwo), false);
+    assert.equal(this.rook.canMoveTo(squareThree), false);
+    assert.equal(this.rook.canMoveTo(squareFour), false);
+    assert.equal(this.rook.canMoveTo(squareFive), false);
+  });
+
+  it('should know it cant move to a given ally occupied space', function () {
+    let squareTwo = this.board.findSquare (2, 6);
+    let piece = new Piece(squareTwo, 'black');
+    squareTwo.piece = piece;
+
+    assert.equal(this.rook.canMoveTo(squareTwo), false);
+  });
+
+  it('should know it cant move through a piece', function () {
+    let squareTwo = this.board.findSquare (2, 6);
+    let piece = new Piece(squareTwo, 'black');
+    squareTwo.piece = piece;
+    let squareThree = this.board.findSquare (3, 6);
+    let squareFour = this.board.findSquare (1, 5);
+    let pieceTwo = new Piece(squareFour, 'black');
+    squareFour.piece = pieceTwo;
+    let squareFive = this.board.findSquare (1, 4);
+
+    assert.equal(this.rook.canMoveTo(squareThree), false);
+    assert.equal(this.rook.canMoveTo(squareFive), false);
+  });
 });
