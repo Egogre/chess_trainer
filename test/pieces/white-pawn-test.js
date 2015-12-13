@@ -42,12 +42,12 @@ describe('WhitePawn', function () {
     let squareTwo = this.board.findSquare(6, 5);
     let squareThree = this.board.findSquare(6, 4);
     let squareFour = this.board.findSquare(6, 3);
-    
+
     this.pawn.move(squareTwo);
 
-    asser.equal(this.pawn.moveCount, 1);
+    assert.equal(this.pawn.moveCount, 1);
     assert(this.pawn.canMoveTo(squareThree));
-    assert.equal(this.rook.canMoveTo(squareTwo), false);
+    assert.equal(this.pawn.canMoveTo(squareTwo), false);
   });
 
   // it('should know no possible moves when blocked and no black pieces in attack zones', function () {
