@@ -66,14 +66,13 @@ describe('WhitePawn', function () {
     assert.equal(this.pawn.canMoveTo(squareThree), false);
   });
 
-  // it('should know its possible moves when a white piece is in an attack zone', function () {
-  //   let whitePawn = new WhitePawn (this.square, "white");
-  //   let squareTwo = new Square (this.board, 1, 5);
-  //   let squareThree = new Square (this.board, 1, 4);
-  //   let squareFour = new Square (this.board, 0, 5);
-  //   squareFour.piece = new Piece (squareFour, "white")
-  //   let squareFive = new Square (this.board, 2, 5);
-  //   assert.equal(whitePawn.possibleMoves, [squareTwo, squareThree]);
-  // });
+  it('should know its possible moves when a white piece is in an attack zone', function () {
+    let squareTwo = this.board.findSquare(5, 5);
+    squareTwo.piece = new Piece (squareTwo, "white");
+    let squareThree = this.board.findSquare(7, 5);
+
+    assert.equal(this.pawn.canMoveTo(squareTwo), false);
+    assert.equal(this.pawn.canMoveTo(squareThree), false);
+  });
 
 });
