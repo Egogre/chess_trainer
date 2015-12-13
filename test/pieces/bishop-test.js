@@ -56,4 +56,33 @@ describe('Bishop', function () {
     assert(this.bishop.canMoveTo(squareFive));
   });
 
+  it('should not move up down left right', function () {
+    let squareTwo = this.board.findSquare (1, 5);
+    let squareThree = this.board.findSquare (1, 7);
+    let squareFour = this.board.findSquare (2, 6);
+    let squareFive = this.board.findSquare (0, 6);
+
+
+    assert.equal(this.bishop.canMoveTo(squareTwo), false);
+    assert.equal(this.bishop.canMoveTo(squareThree), false);
+    assert.equal(this.bishop.canMoveTo(squareFour), false);
+    assert.equal(this.bishop.canMoveTo(squareFive), false);
+  });
+
+  it('should know it cant move to a given ally occupied space', function () {
+    let squareTwo = this.board.findSquare (2, 5);
+    let piece = new Piece(squareTwo, 'black');
+    squareTwo.piece = piece;
+
+    assert.equal(this.bishop.canMoveTo(squareTwo), false);
+  });
+
+  it('should know it cant move through a piece', function () {
+    let squareTwo = this.board.findSquare (2, 5);
+    let piece = new Piece(squareTwo, 'white');
+    squareTwo.piece = piece;
+    let squareThree = this.board.findSquare (3, 4);
+
+    assert.equal(this.bishop.canMoveTo(squareThree), false);
+  });
 });

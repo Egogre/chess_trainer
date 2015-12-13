@@ -64,4 +64,38 @@ describe('Queen', function () {
     assert(this.queen.canMoveTo(squareNine));
   });
 
+  it('should only move in straight lines', function () {
+    let squareTwo = this.board.findSquare (0, 4);
+    let squareThree = this.board.findSquare (0, 8);
+    let squareFour = this.board.findSquare (3, 5);
+    let squareFive = this.board.findSquare (7, 7);
+
+
+    assert.equal(this.queen.canMoveTo(squareTwo), false);
+    assert.equal(this.queen.canMoveTo(squareThree), false);
+    assert.equal(this.queen.canMoveTo(squareFour), false);
+    assert.equal(this.queen.canMoveTo(squareFive), false);
+  });
+
+  it('should know it cant move to a given ally occupied space', function () {
+    let squareTwo = this.board.findSquare (2, 5);
+    let piece = new Piece(squareTwo, 'black');
+    squareTwo.piece = piece;
+
+    assert.equal(this.queen.canMoveTo(squareTwo), false);
+  });
+
+  it('should know it cant move through a piece', function () {
+    let squareTwo = this.board.findSquare (2, 5);
+    let piece = new Piece(squareTwo, 'white');
+    squareTwo.piece = piece;
+    let squareThree = this.board.findSquare (3, 4);
+    let squareFour = this.board.findSquare (1, 5);
+    let pieceTwo = new Piece(squareFour, 'black');
+    squareFour.piece = pieceTwo;
+    let squareFive = this.board.findSquare (1, 4);
+
+    assert.equal(this.queen.canMoveTo(squareThree), false);
+    assert.equal(this.queen.canMoveTo(squareFive), false);
+  });
 });
