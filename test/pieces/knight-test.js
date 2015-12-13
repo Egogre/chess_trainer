@@ -11,7 +11,7 @@ describe('Knight', function () {
   beforeEach (function () {
     this.board = new Board ();
     this.board.addSquaresToBoard();
-    this.square = this.board.findSquare(3, 4)
+    this.square = this.board.findSquare(3, 4);
     this.knight = new Knight (this.square, "black");
     this.square.piece = this.knight;
   });

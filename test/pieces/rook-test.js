@@ -11,7 +11,7 @@ describe('Rook', function () {
   beforeEach (function () {
     this.board = new Board ();
     this.board.addSquaresToBoard();
-    this.square = this.board.findSquare(1, 6)
+    this.square = this.board.findSquare(1, 6);
     this.rook = new Rook (this.square, "black");
     this.square.piece = this.rook;
   });

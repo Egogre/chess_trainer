@@ -10,44 +10,46 @@ describe('WhitePawn', function () {
 
   beforeEach (function () {
     this.board = new Board ();
-    this.square = new Square (this.board, 1, 6);
+    this.board.addSquaresToBoard();
+    this.square = this.board.findSquare(6, 6);
+    this.pawn = new WhitePawn (this.square, "white");
+    this.square.piece = this.rook;
   });
 
   it('should instantiate a new piece', function () {
-    let whitePawn = new WhitePawn ();
-    assert.isObject(whitePawn);
+    assert.isObject(this.pawn);
   });
 
   it('should know its square', function () {
-    let whitePawn = new WhitePawn (this.square, "white");
-    assert.equal(whitePawn.square, this.square);
+    assert.equal(this.pawn.square, this.square);
   });
 
   it('should know its color', function () {
-    let whitePawn = new WhitePawn (this.square, "white");
-    assert.equal(whitePawn.color, "white");
+    assert.equal(this.pawn.color, "white");
   });
 
-  // it('should know its possible moves when no black pieces in attack zones and move counter is zero', function () {
-  //   let whitePawn = new WhitePawn (this.square, "white");
-  //   let squareTwo = new Square (this.board, 1, 5);
-  //   let squareThree = new Square (this.board, 1, 4);
-  //   let squareFour = new Square (this.board, 0, 5);
-  //   let squareFive = new Square (this.board, 2, 5);
-  //   assert.equal(whitePawn.possibleMoves, [squareTwo, squareThree]);
-  // });
-  //
-  // it('should know its possible moves when no black pieces in attack zones and move counter not zero', function () {
-  //   let whitePawn = new WhitePawn (this.square, "white");
-  //   let squareTwo = new Square (this.board, 1, 5);
-  //   whitePawn.move(squareTwo);
-  //   let squareThree = new Square (this.board, 1, 4);
-  //   let squareFour = new Square (this.board, 0, 4);
-  //   let squareFive = new Square (this.board, 2, 4);
-  //   let squareSix = new Square (this.board, 1, 3)
-  //   assert.equal(whitePawn.possibleMoves, [squareThree]);
-  // });
-  //
+  it('should know its possible moves when no black pieces in attack zones and move counter is zero', function () {
+    let squareTwo = this.board.findSquare(6, 5);
+    let squareThree = this.board.findSquare(6, 4);
+    let squareFour = this.board.findSquare(5, 5);
+    let squareFive = this.board.findSquare(7, 5);
+
+    assert(this.pawn.canMoveTo(squareTwo));
+    assert(this.pawn.canMoveTo(squareThree));
+  });
+
+  it('should know its possible moves when no black pieces in attack zones and move counter not zero', function () {
+    let squareTwo = this.board.findSquare(6, 5);
+    let squareThree = this.board.findSquare(6, 4);
+    let squareFour = this.board.findSquare(6, 3);
+    
+    this.pawn.move(squareTwo);
+
+    asser.equal(this.pawn.moveCount, 1);
+    assert(this.pawn.canMoveTo(squareThree));
+    assert.equal(this.rook.canMoveTo(squareTwo), false);
+  });
+
   // it('should know no possible moves when blocked and no black pieces in attack zones', function () {
   //   let whitePawn = new WhitePawn (this.square, "white");
   //   let squareTwo = new Square (this.board, 1, 5);

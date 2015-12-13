@@ -11,7 +11,7 @@ describe('Queen', function () {
   beforeEach (function () {
     this.board = new Board ();
     this.board.addSquaresToBoard();
-    this.square = this.board.findSquare(1, 6)
+    this.square = this.board.findSquare(1, 6);
     this.queen = new Queen (this.square, "black");
     this.square.piece = this.queen;
   });
