@@ -1,6 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 
+var Game = require('../../lib/game')
 var Board = require('../../lib/board')
 var Square = require('../../lib/square')
 var Piece = require('../../lib/piece')
@@ -10,6 +11,8 @@ describe('Pawn', function () {
 
   beforeEach (function () {
     this.board = new Board ();
+    this.game = new Game (this.board);
+    this.board.game = this.game;
     this.board.addSquaresToBoard();
     this.square = this.board.findSquare(6, 6);
     this.whitePawn = new Pawn (this.square, "white");

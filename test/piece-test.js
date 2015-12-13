@@ -30,13 +30,4 @@ describe('Piece', function () {
     assert.equal(piece.moveCount, 0);
   });
 
-  it('should increment move counter when moved', function () {
-    let piece = new Piece (this.square, "black");
-    let squareTwo = new Square ("board", 0, 3);
-
-    piece.move(squareTwo);
-
-    assert.equal(piece.moveCount, 1);
-  });
-
 });

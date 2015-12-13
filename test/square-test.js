@@ -1,6 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 
+var Game = require('../lib/game')
 var Board = require('../lib/board')
 var Square = require('../lib/square')
 var Piece = require('../lib/piece')
@@ -8,6 +9,8 @@ var Piece = require('../lib/piece')
 describe('Square', function () {
   beforeEach( function () {
     this.board = new Board ();
+    this.game = new Game (this.board);
+    this.board.game = this.game;
   });
 
   it('should instantiate a new square', function () {
