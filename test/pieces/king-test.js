@@ -1,15 +1,19 @@
 const chai = require('chai');
 const assert = chai.assert;
 
+var Game = require('../../lib/game')
 var Board = require('../../lib/board')
 var Square = require('../../lib/square')
 var Piece = require('../../lib/piece')
 var King = require('../../lib/pieces/king')
+var Rook = require('../../lib/pieces/rook')
 
 describe('King', function () {
 
   beforeEach (function () {
     this.board = new Board ();
+    this.game = new Game (this.board);
+    this.board.game = this.game;
     this.square = new Square (this.board, 1, 6);
     this.king = new King (this.square, "black");
   });
@@ -66,5 +70,18 @@ describe('King', function () {
     squareTwo.piece = piece;
 
     assert.equal(this.king.canMoveTo(squareTwo), false);
+  });
+
+  it('should know it cant move to a threatened space', function () {
+    this.board.addSquaresToBoard();
+    let square = this.board.findSquare(1, 4);
+    let squareTwo = this.board.findSquare(2, 4);
+    let squareThree = this.board.findSquare(2, 1);
+    let whiteKing = new King (square, "white");
+    let blackRook = new Rook (squareThree, "black");
+    square.piece = whiteKing;
+    squareThree.piece = blackRook;
+
+    assert.equal(whiteKing.canMoveTo(squareTwo), false);
   });
 });
