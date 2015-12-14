@@ -41,7 +41,7 @@ describe('King', function () {
     let squareEight = this.board.findSquare(1, 5);
     let squareNine = this.board.findSquare(2, 5);
 
-    assert.equal(this.king.canMoveTo(squareTwo), 1);
+    assert(this.king.canMoveTo(squareTwo));
     assert(this.king.canMoveTo(squareThree));
     assert(this.king.canMoveTo(squareFour));
     assert(this.king.canMoveTo(squareFive));
