@@ -29,16 +29,6 @@ describe('Square', function () {
     assert.equal(square.board, this.board);
   });
 
-  it('should know a piece can move to it', function () {
-    let square = new Square (this.board, 3, 5);
-    let squareTwo = new Square (this.board, 3, 6);
-    let piece = new Piece (squareTwo, "white");
-    squareTwo.piece = piece;
-    this.board.squares.push(square);
-    this.board.squares.push(squareTwo);
-    assert.include(square.legalPieces(), piece);
-  });
-
   it('should remove piece from the board when another piece enters', function () {
     let square = new Square (this.board, 3, 5);
     let piece = new Piece (square, "black");

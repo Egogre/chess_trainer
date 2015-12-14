@@ -1,52 +1,44 @@
 const chai = require('chai');
 const assert = chai.assert;
 
+var Game = require('../lib/game')
 var Board = require('../lib/board')
 var Square = require('../lib/square')
 var Piece = require('../lib/piece')
 
 describe('Board', function () {
+  beforeEach (function () {
+    this.board = new Board ('context', 'canvas');
+    this.game = new Game (this.board);
+    this.board.game = this.game;
+  });
+
   it('should instantiate a new board', function () {
-    let board = new Board ();
-    assert.isObject(board);
+    assert.isObject(this.board);
   });
 
   it('should know the canvas it is built on', function () {
-    let board = new Board ('context', 'canvas');
-    assert.equal(board.canvas, 'canvas')
+    assert.equal(this.board.canvas, 'canvas')
   })
 
   it('should know the context it is built in', function () {
-    let board = new Board ('context', 'canvas');
-    assert.equal(board.context, 'context')
+    assert.equal(this.board.context, 'context')
   })
 
   it('should know when the game is over', function () {
-    let board = new Board ();
-    assert.equal(board.gameOver, false)
-  });
-
-  it('should return an array of pieces that can move to a given square', function () {
-    let board = new Board ();
-    let square = new Square (board, 4, 4);
-    let piece = new Piece (square, "black");
-    square.piece = piece;
-    board.squares.push(square);
-    var legalPieces = board.canMoveHere(square);
-    assert.include(legalPieces, piece);
+    assert.equal(this.board.gameOver, false)
   });
 
   it('knows how many pieces are on the board', function () {
-    let board = new Board ();
-    let square = new Square (board, 4, 4);
+    let square = new Square (this.board, 4, 4);
     let piece = new Piece (square, "black");
     square.piece = piece;
-    let squareTwo = new Square (board, 4, 6);
+    let squareTwo = new Square (this.board, 4, 6);
     let pieceTwo = new Piece (squareTwo, "white");
     squareTwo.piece = pieceTwo;
-    board.squares.push(square);
-    board.squares.push(squareTwo);
+    this.board.squares.push(square);
+    this.board.squares.push(squareTwo);
 
-    assert.equal(board.pieceCount(), 2);
+    assert.equal(this.board.pieceCount(), 2);
   });
 });

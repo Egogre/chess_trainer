@@ -6,6 +6,7 @@ var Board = require('../../lib/board')
 var Square = require('../../lib/square')
 var Piece = require('../../lib/piece')
 var Pawn = require('../../lib/pieces/pawn')
+var King = require('../../lib/pieces/king')
 
 describe('Pawn', function () {
 
@@ -51,6 +52,9 @@ describe('Pawn', function () {
   });
 
   it('white pawn should know its possible moves when no black pieces in attack zones and move counter not zero', function () {
+    let kingsSquare = this.board.findSquare(3, 0);
+    let king = new King (kingsSquare, "black");
+    kingsSquare.piece = king;
     let squareTwo = this.board.findSquare(6, 5);
     let squareThree = this.board.findSquare(6, 4);
     let squareFour = this.board.findSquare(6, 3);
@@ -63,6 +67,10 @@ describe('Pawn', function () {
   });
 
   it('black pawn should know its possible moves when no white pieces in attack zones and move counter not zero', function () {
+    let kingsSquare = this.board.findSquare(4, 7);
+    let king = new King (kingsSquare, "white");
+    kingsSquare.piece = king;
+    this.game.turn = "black";
     let squareTwo = this.board.findSquare(1, 2);
     let squareThree = this.board.findSquare(1, 3);
     let squareFour = this.board.findSquare(1, 4);
