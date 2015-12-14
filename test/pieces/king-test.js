@@ -12,9 +12,10 @@ describe('King', function () {
 
   beforeEach (function () {
     this.board = new Board ();
+    this.board.addSquaresToBoard();
     this.game = new Game (this.board);
     this.board.game = this.game;
-    this.square = new Square (this.board, 1, 6);
+    this.square = this.board.findSquare(1, 6);
     this.king = new King (this.square, "black");
   });
 
@@ -31,16 +32,16 @@ describe('King', function () {
   });
 
   it('should know if it can move to a given empty space', function () {
-    let squareTwo = new Square(this.board, 2, 6);
-    let squareThree = new Square(this.board, 2, 7);
-    let squareFour = new Square(this.board, 1, 7);
-    let squareFive = new Square(this.board, 0, 7);
-    let squareSix = new Square(this.board, 0, 6);
-    let squareSeven = new Square(this.board, 0, 5);
-    let squareEight = new Square(this.board, 1, 5);
-    let squareNine = new Square(this.board, 2, 5);
+    let squareTwo = this.board.findSquare(2, 6);
+    let squareThree = this.board.findSquare(2, 7);
+    let squareFour = this.board.findSquare(1, 7);
+    let squareFive = this.board.findSquare(0, 7);
+    let squareSix = this.board.findSquare(0, 6);
+    let squareSeven = this.board.findSquare(0, 5);
+    let squareEight = this.board.findSquare(1, 5);
+    let squareNine = this.board.findSquare(2, 5);
 
-    assert(this.king.canMoveTo(squareTwo));
+    assert.equal(this.king.canMoveTo(squareTwo), 1);
     assert(this.king.canMoveTo(squareThree));
     assert(this.king.canMoveTo(squareFour));
     assert(this.king.canMoveTo(squareFive));
@@ -73,7 +74,6 @@ describe('King', function () {
   });
 
   it('should know it cant move to a threatened space', function () {
-    this.board.addSquaresToBoard();
     let square = this.board.findSquare(1, 4);
     let squareTwo = this.board.findSquare(2, 4);
     let squareThree = this.board.findSquare(2, 1);
