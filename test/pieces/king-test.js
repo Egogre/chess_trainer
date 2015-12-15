@@ -17,6 +17,7 @@ describe('King', function () {
     this.board.game = this.game;
     this.square = this.board.findSquare(1, 6);
     this.king = new King (this.square, "black");
+    this.square.piece = this.king;
   });
 
   it('should instantiate a new piece', function () {
@@ -84,4 +85,20 @@ describe('King', function () {
 
     assert.equal(whiteKing.canMoveTo(squareTwo), false);
   });
+
+  it('should know it can castle', function () {
+    let square = this.board.findSquare(4, 7);
+    let squareTwo = this.board.findSquare(5, 7);
+    let squareThree = this.board.findSquare(6, 7);
+    let squareFour = this.board.findSquare(7, 7);
+    let whiteKing = new King (square, "white");
+    let whiteRook = new Rook (squareFour, "white");
+    square.piece = whiteKing;
+    squareFour.piece = whiteRook;
+
+    assert(whiteKing.canMoveTo(squareThree));
+    whiteKing.move(squareThree);
+    assert.equal(whiteRook.square, squareTwo);
+  });
+
 });
