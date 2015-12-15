@@ -7,6 +7,7 @@ var Square = require('../../lib/square')
 var Piece = require('../../lib/piece')
 var Pawn = require('../../lib/pieces/pawn')
 var King = require('../../lib/pieces/king')
+var Queen = require('../../lib/pieces/queen')
 
 describe('Pawn', function () {
 
@@ -134,6 +135,19 @@ describe('Pawn', function () {
 
     assert.equal(this.blackPawn.canMoveTo(squareTwo), false);
     assert.equal(this.blackPawn.canMoveTo(squareThree), false);
+  });
+
+  it('white pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+    let squareTwo = this.board.findSquare(5, 6);
+    let promotionSquare = this.board.findSquare(5, 7);
+    let pawn = new Pawn (squareTwo, "white");
+    pawn.moveCount = 1;
+    pawn.promotionLine = 7;
+    squareTwo.piece = pawn;
+
+    pawn.move(promotionSquare);
+
+    assert.equal(promotionSquare.piece.type, "queen");
   });
 
 });
