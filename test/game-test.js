@@ -81,4 +81,18 @@ describe('Game', function () {
     assert(this.game.checkMate());
   });
 
+  it('should know when it is a stale mate', function () {
+    let squareTwo = this.board.findSquare (0, 6);
+    let squareThree = this.board.findSquare (6, 0)
+    let queen = new Queen (squareTwo, "white");
+    squareTwo.piece = queen;
+    let rook = new Rook (squareThree, "white");
+    squareThree.piece = rook;
+
+    let squareFour = this.board.findSquare (6, 6)
+
+    rook.move(squareFour);
+
+    assert(this.game.staleMate());
+  });
 });
