@@ -6,6 +6,8 @@ var Board = require('../lib/board')
 var Square = require('../lib/square')
 var Piece = require('../lib/piece')
 var King = require('../lib/pieces/king')
+var Queen = require('../lib/pieces/queen')
+var Rook = require('../lib/pieces/rook')
 var Bishop = require('../lib/pieces/bishop')
 var Pawn = require('../lib/pieces/pawn')
 
@@ -15,7 +17,7 @@ describe('Game', function () {
     this.game = new Game (this.board);
     this.board.game = this.game;
     this.board.addSquaresToBoard ();
-    this.blackKingsSquare = this.board.findSquare(6, 6);
+    this.blackKingsSquare = this.board.findSquare(7, 7);
     this.blackKing = new King (this.blackKingsSquare, "black");
     this.blackKingsSquare.piece = this.blackKing;
     this.whiteKingsSquare = this.board.findSquare(1, 1);
@@ -62,6 +64,21 @@ describe('Game', function () {
     pawn.moveCount = 1;
 
     assert.equal(this.game.availableMoves().length, 18);
+  });
+
+  it('should know when it is in check mate', function () {
+    let squareTwo = this.board.findSquare (0, 6);
+    let squareThree = this.board.findSquare (6, 0)
+    let queen = new Queen (squareTwo, "white");
+    squareTwo.piece = queen;
+    let rook = new Rook (squareThree, "white");
+    squareThree.piece = rook;
+
+    let squareFour = this.board.findSquare (6, 6)
+
+    queen.move(squareFour);
+
+    assert(this.game.checkMate());
   });
 
 });
