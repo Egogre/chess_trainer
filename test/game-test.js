@@ -7,6 +7,7 @@ var Square = require('../lib/square')
 var Piece = require('../lib/piece')
 var King = require('../lib/pieces/king')
 var Bishop = require('../lib/pieces/bishop')
+var Pawn = require('../lib/pieces/pawn')
 
 describe('Game', function () {
   beforeEach( function () {
@@ -14,9 +15,12 @@ describe('Game', function () {
     this.game = new Game (this.board);
     this.board.game = this.game;
     this.board.addSquaresToBoard ();
-    this.kingsSquare = this.board.findSquare(3, 4);
-    this.king = new King (this.kingsSquare, "black");
-    this.kingsSquare.piece = this.king;
+    this.blackKingsSquare = this.board.findSquare(6, 6);
+    this.blackKing = new King (this.blackKingsSquare, "black");
+    this.blackKingsSquare.piece = this.blackKing;
+    this.whiteKingsSquare = this.board.findSquare(1, 1);
+    this.whiteKing = new King (this.whiteKingsSquare, "white");
+    this.whiteKingsSquare.piece = this.whiteKing;
   });
 
   it('should instantiate a new game', function () {
@@ -34,14 +38,30 @@ describe('Game', function () {
   });
 
   it('should know if the king is in check', function () {
-    let squareTwo = this.board.findSquare (3, 2);
-    let squareThree = this.board.findSquare (2, 3)
+    let squareTwo = this.board.findSquare (4, 6);
+    let squareThree = this.board.findSquare (5, 5)
     let bishop = new Bishop (squareTwo, "white");
     squareTwo.piece = bishop;
 
     bishop.move(squareThree);
 
     assert.equal(this.game.inCheck(), true);
+  });
+
+  it('should know if it has available moves', function () {
+    assert.equal(this.game.availableMoves().length, 8);
+  });
+
+  it('should know total available moves for several pieces', function () {
+    let squareTwo = this.board.findSquare (4, 6);
+    let bishop = new Bishop (squareTwo, "white");
+    squareTwo.piece = bishop;
+    let squareThree = this.board.findSquare (2, 5)
+    let pawn = new Pawn (squareThree, "white");
+    squareThree.piece = pawn;
+    pawn.moveCount = 1;
+
+    assert.equal(this.game.availableMoves().length, 18);
   });
 
 });
