@@ -150,4 +150,17 @@ describe('Pawn', function () {
     assert.equal(promotionSquare.piece.type, "queen");
   });
 
+  it('black pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+    let squareTwo = this.board.findSquare(3, 1);
+    let promotionSquare = this.board.findSquare(3, 0);
+    let pawn = new Pawn (squareTwo, "black");
+    this.game.turn = "black";
+    pawn.moveCount = 1;
+    pawn.promotionLine = 0;
+    squareTwo.piece = pawn;
+
+    pawn.move(promotionSquare);
+
+    assert.equal(promotionSquare.piece.type, "queen");
+  });
 });
