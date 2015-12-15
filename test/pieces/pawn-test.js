@@ -148,6 +148,7 @@ describe('Pawn', function () {
     pawn.move(promotionSquare);
 
     assert.equal(promotionSquare.piece.type, "queen");
+    assert.equal(promotionSquare.piece.color, "white");
   });
 
   it('black pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
@@ -162,5 +163,6 @@ describe('Pawn', function () {
     pawn.move(promotionSquare);
 
     assert.equal(promotionSquare.piece.type, "queen");
+    assert.equal(promotionSquare.piece.color, "black");
   });
 });
