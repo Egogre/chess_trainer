@@ -1,19 +1,30 @@
 const chai = require('chai');
 const assert = chai.assert;
 
+var Game = require('../../lib/game')
 var Board = require('../../lib/board')
 var Square = require('../../lib/square')
 var Piece = require('../../lib/piece')
 var Bishop = require('../../lib/pieces/bishop')
+var King = require('../../lib/pieces/king')
 
 describe('Bishop', function () {
 
   beforeEach (function () {
     this.board = new Board ();
+    this.game = new Game (this.board);
+    this.board.game = this.game;
     this.board.addSquaresToBoard();
     this.square = this.board.findSquare(1, 6);
     this.bishop = new Bishop (this.square, "black");
     this.square.piece = this.bishop;
+    this.whiteKingsSquare = this.board.findSquare(4, 7);
+    this.whiteKing = new King (this.whiteKingsSquare, "white");
+    this.whiteKingsSquare.piece = this.whiteKing;
+    this.blackKingsSquare = this.board.findSquare(4, 0);
+    this.blackKing = new King (this.blackKingsSquare, "black");
+    this.blackKingsSquare.piece = this.blackKing;
+    this.game.turn = "black";
   });
 
   it('should instantiate a new piece', function () {
