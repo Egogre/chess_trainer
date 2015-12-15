@@ -82,6 +82,8 @@ describe('Game', function () {
   });
 
   it('should know when it is a stale mate', function () {
+    this.whiteKing.moveCount = 2
+    this.blackKing.moveCount = 2
     let squareTwo = this.board.findSquare (0, 6);
     let squareThree = this.board.findSquare (6, 0)
     let queen = new Queen (squareTwo, "white");
