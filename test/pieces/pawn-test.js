@@ -157,6 +157,7 @@ describe('Pawn', function () {
     let squareTwo = this.board.findSquare(5, 6);
     let promotionSquare = this.board.findSquare(5, 7);
     let pawn = new Pawn (squareTwo, "white");
+
     pawn.moveCount = 1;
     pawn.promotionLine = 7;
     squareTwo.piece = pawn;
@@ -172,6 +173,7 @@ describe('Pawn', function () {
     let promotionSquare = this.board.findSquare(3, 0);
     let pawn = new Pawn (squareTwo, "black");
     this.game.turn = "black";
+    
     pawn.moveCount = 1;
     pawn.promotionLine = 0;
     squareTwo.piece = pawn;
