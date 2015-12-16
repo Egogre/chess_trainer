@@ -15,7 +15,7 @@ describe('Pawn', function () {
     this.board = new Board ();
     this.game = new Game (this.board);
     this.board.game = this.game;
-    this.board.addSquaresToBoard();
+    this.board.createSquares();
     this.square = this.board.findSquare(6, 6);
     this.whitePawn = new Pawn (this.square, "white");
     this.square.piece = this.whitePawn;

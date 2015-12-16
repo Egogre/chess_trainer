@@ -14,7 +14,7 @@ describe('Rook', function () {
     this.board = new Board ();
     this.game = new Game (this.board);
     this.board.game = this.game;
-    this.board.addSquaresToBoard();
+    this.board.createSquares();
     this.square = this.board.findSquare(1, 6);
     this.rook = new Rook (this.square, "black");
     this.square.piece = this.rook;

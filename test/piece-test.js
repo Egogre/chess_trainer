@@ -37,7 +37,7 @@ describe('Piece', function () {
 
   it('should cannot move if result puts own king in check', function () {
     var board = new Board ();
-    board.addSquaresToBoard();
+    board.createSquares();
     var game = new Game (board);
     board.game = game;
     var square = board.findSquare(1, 6);

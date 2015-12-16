@@ -12,7 +12,7 @@ describe('King', function () {
 
   beforeEach (function () {
     this.board = new Board ();
-    this.board.addSquaresToBoard();
+    this.board.createSquares();
     this.game = new Game (this.board);
     this.board.game = this.game;
     this.square = this.board.findSquare(1, 6);

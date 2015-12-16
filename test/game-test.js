@@ -16,7 +16,7 @@ describe('Game', function () {
     this.board = new Board ();
     this.game = new Game (this.board);
     this.board.game = this.game;
-    this.board.addSquaresToBoard ();
+    this.board.createSquares();
     this.blackKingsSquare = this.board.findSquare(7, 7);
     this.blackKing = new King (this.blackKingsSquare, "black");
     this.blackKingsSquare.piece = this.blackKing;
