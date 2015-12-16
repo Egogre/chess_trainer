@@ -7,6 +7,7 @@ var Square = require('../../lib/square')
 var Piece = require('../../lib/piece')
 var Pawn = require('../../lib/pieces/pawn')
 var King = require('../../lib/pieces/king')
+var Queen = require('../../lib/pieces/queen')
 
 describe('Pawn', function () {
 
@@ -152,4 +153,32 @@ describe('Pawn', function () {
     assert(!squareThree.piece);
   });
 
+  it('white pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+    let squareTwo = this.board.findSquare(5, 6);
+    let promotionSquare = this.board.findSquare(5, 7);
+    let pawn = new Pawn (squareTwo, "white");
+    pawn.moveCount = 1;
+    pawn.promotionLine = 7;
+    squareTwo.piece = pawn;
+
+    pawn.move(promotionSquare);
+
+    assert.equal(promotionSquare.piece.type, "queen");
+    assert.equal(promotionSquare.piece.color, "white");
+  });
+
+  it('black pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+    let squareTwo = this.board.findSquare(3, 1);
+    let promotionSquare = this.board.findSquare(3, 0);
+    let pawn = new Pawn (squareTwo, "black");
+    this.game.turn = "black";
+    pawn.moveCount = 1;
+    pawn.promotionLine = 0;
+    squareTwo.piece = pawn;
+
+    pawn.move(promotionSquare);
+
+    assert.equal(promotionSquare.piece.type, "queen");
+    assert.equal(promotionSquare.piece.color, "black");
+  });
 });
