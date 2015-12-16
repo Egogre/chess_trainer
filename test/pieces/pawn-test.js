@@ -139,13 +139,15 @@ describe('Pawn', function () {
   it('should be able to capture through en passant', function () {
     let squareTwo = this.board.findSquare(5, 4);
     let attackingPawn = new Pawn (squareTwo, "black");
+    squareTwo.piece = attackingPawn;
     let squareThree = this.board.findSquare(6, 4);
     let squareFour = this.board.findSquare(6, 5);
 
     this.whitePawn.move(squareThree);
 
     assert(attackingPawn.canMoveTo(squareFour));
-    attackingPawn.move(squareFive);
+
+    attackingPawn.move(squareFour);
     assert(!this.whitePawn.square);
     assert(!squareThree.piece);
   });
