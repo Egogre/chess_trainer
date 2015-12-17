@@ -1,13 +1,11 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-var Game = require('../../lib/game')
-var Board = require('../../lib/board')
-var Square = require('../../lib/square')
-var Piece = require('../../lib/piece')
-var Pawn = require('../../lib/pieces/pawn')
-var King = require('../../lib/pieces/king')
-var Queen = require('../../lib/pieces/queen')
+var Game = require('../../lib/game');
+var Board = require('../../lib/board');
+var Piece = require('../../lib/piece');
+var Pawn = require('../../lib/pieces/pawn');
+var King = require('../../lib/pieces/king');
 
 describe('Pawn', function () {
 
@@ -85,7 +83,7 @@ describe('Pawn', function () {
 
   it('white pawn should know no possible moves when blocked and no black pieces in attack zones', function () {
     let squareTwo = this.board.findSquare(6, 5);
-    squareTwo.piece = new Piece (squareTwo, "white")
+    squareTwo.piece = new Piece (squareTwo, "white");
     let squareThree = this.board.findSquare(6, 4);
 
     assert.equal(this.whitePawn.canMoveTo(squareTwo), false);
@@ -94,7 +92,7 @@ describe('Pawn', function () {
 
   it('black pawn should know no possible moves when blocked and no white pieces in attack zones', function () {
     let squareTwo = this.board.findSquare(1, 2);
-    squareTwo.piece = new Piece (squareTwo, "black")
+    squareTwo.piece = new Piece (squareTwo, "black");
     let squareThree = this.board.findSquare(1, 3);
 
     assert.equal(this.blackPawn.canMoveTo(squareTwo), false);

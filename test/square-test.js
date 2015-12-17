@@ -1,13 +1,12 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-var Game = require('../lib/game')
-var Board = require('../lib/board')
-var Square = require('../lib/square')
-var King = require('../lib/pieces/king')
-var Rook = require('../lib/pieces/rook')
-var Piece = require('../lib/piece')
-var Pawn = require('../lib/pieces/pawn')
+var Game = require('../lib/game');
+var Board = require('../lib/board');
+var Square = require('../lib/square');
+var King = require('../lib/pieces/king');
+var Rook = require('../lib/pieces/rook');
+var Pawn = require('../lib/pieces/pawn');
 
 describe('Square', function () {
   beforeEach( function () {
