@@ -10,7 +10,7 @@
   float: right;
   margin-left: 2em;
   min-height: 800px;
-  min-width: 400px;
+  max-width: 400px;
   border: 10px solid lightgrey;
   text-align: center;
 }
