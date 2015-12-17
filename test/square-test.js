@@ -14,7 +14,7 @@ describe('Square', function () {
     this.board = new Board ();
     this.game = new Game (this.board);
     this.board.game = this.game;
-    this.board.addSquaresToBoard ();
+    this.board.createSquares();
   });
 
   it('should instantiate a new square', function () {
