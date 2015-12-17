@@ -14,3 +14,11 @@
   border: 10px solid lightgrey;
   text-align: center;
 }
+
+#player-turn {
+  min-height: 5em;
+}
+
+#game-status {
+  min-height: 5em;
+}
