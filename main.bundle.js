@@ -209,7 +209,7 @@
 	    var iconColor = ["black", "white"];
 	    iconColor.forEach(function (color) {
 	      var icon = new Image(80, 80);
-	      icon.src = "./icons/standard/" + color + "-" + piece + ".png";
+	      icon.src = "icons/standard/" + color + "-" + piece + ".png";
 	      board.icons[color + "-" + piece] = icon;
 	    });
 	  });
