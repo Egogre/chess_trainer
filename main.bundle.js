@@ -57,10 +57,10 @@
 	board.createIcons();
 	setTimeout(function () {
 	  board.createNewBoard();
-	}, 100);
+	}, 500);
 	setTimeout(function () {
 	  game.updateStatsBoard();
-	}, 200);
+	}, 1000);
 
 	requestAnimationFrame(function gameLoop() {
 	  if (game.over === true) {
