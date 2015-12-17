@@ -15,9 +15,9 @@
   "author": "Justin Holzmann and George Hudson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/turingschool-examples/game-time-starter-kit/issues"
+    "url": "https://github.com/jphoenix86/chess_trainer"
   },
-  "homepage": "https://github.com/turingschool-examples/game-time-starter-kit",
+  "homepage": "http://jphoenix86.github.io/chess_trainer/",
   "devDependencies": {
     "babel": "^5.8.3",
     "babel-core": "^5.7.4",
