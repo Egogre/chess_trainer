@@ -1,15 +1,13 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-var Game = require('../lib/game')
-var Board = require('../lib/board')
-var Square = require('../lib/square')
-var Piece = require('../lib/piece')
-var King = require('../lib/pieces/king')
-var Queen = require('../lib/pieces/queen')
-var Rook = require('../lib/pieces/rook')
-var Bishop = require('../lib/pieces/bishop')
-var Pawn = require('../lib/pieces/pawn')
+var Game = require('../lib/game');
+var Board = require('../lib/board');
+var King = require('../lib/pieces/king');
+var Queen = require('../lib/pieces/queen');
+var Rook = require('../lib/pieces/rook');
+var Bishop = require('../lib/pieces/bishop');
+var Pawn = require('../lib/pieces/pawn');
 
 describe('Game', function () {
   beforeEach( function () {
@@ -41,7 +39,7 @@ describe('Game', function () {
 
   it('should know if the king is in check', function () {
     let squareTwo = this.board.findSquare (4, 6);
-    let squareThree = this.board.findSquare (5, 5)
+    let squareThree = this.board.findSquare (5, 5);
     let bishop = new Bishop (squareTwo, "white");
     squareTwo.piece = bishop;
 
@@ -58,7 +56,7 @@ describe('Game', function () {
     let squareTwo = this.board.findSquare (4, 6);
     let bishop = new Bishop (squareTwo, "white");
     squareTwo.piece = bishop;
-    let squareThree = this.board.findSquare (2, 5)
+    let squareThree = this.board.findSquare (2, 5);
     let pawn = new Pawn (squareThree, "white");
     squareThree.piece = pawn;
     pawn.moveCount = 1;
@@ -68,13 +66,13 @@ describe('Game', function () {
 
   it('should know when it is in check mate', function () {
     let squareTwo = this.board.findSquare (0, 6);
-    let squareThree = this.board.findSquare (6, 0)
+    let squareThree = this.board.findSquare (6, 0);
     let queen = new Queen (squareTwo, "white");
     squareTwo.piece = queen;
     let rook = new Rook (squareThree, "white");
     squareThree.piece = rook;
 
-    let squareFour = this.board.findSquare (6, 6)
+    let squareFour = this.board.findSquare (6, 6);
 
     queen.move(squareFour);
 
@@ -82,16 +80,16 @@ describe('Game', function () {
   });
 
   it('should know when it is a stale mate', function () {
-    this.whiteKing.moveCount = 2
-    this.blackKing.moveCount = 2
+    this.whiteKing.moveCount = 2;
+    this.blackKing.moveCount = 2;
     let squareTwo = this.board.findSquare (0, 6);
-    let squareThree = this.board.findSquare (6, 0)
+    let squareThree = this.board.findSquare (6, 0);
     let queen = new Queen (squareTwo, "white");
     squareTwo.piece = queen;
     let rook = new Rook (squareThree, "white");
     squareThree.piece = rook;
 
-    let squareFour = this.board.findSquare (6, 6)
+    let squareFour = this.board.findSquare (6, 6);
 
     rook.move(squareFour);
 

@@ -33,5 +33,10 @@
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1",
     "jquery": "~2.1.4"
+  },
+  "eslintConfig": {
+    "env": {
+      "mocha": true
+    }
   }
 }

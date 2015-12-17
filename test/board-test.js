@@ -1,10 +1,10 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-var Game = require('../lib/game')
-var Board = require('../lib/board')
-var Square = require('../lib/square')
-var Piece = require('../lib/piece')
+var Game = require('../lib/game');
+var Board = require('../lib/board');
+var Square = require('../lib/square');
+var Piece = require('../lib/piece');
 
 describe('Board', function () {
   beforeEach (function () {
@@ -18,15 +18,15 @@ describe('Board', function () {
   });
 
   it('should know the canvas it is built on', function () {
-    assert.equal(this.board.canvas, 'canvas')
-  })
+    assert.equal(this.board.canvas, 'canvas');
+  });
 
   it('should know the context it is built in', function () {
-    assert.equal(this.board.context, 'context')
-  })
+    assert.equal(this.board.context, 'context');
+  });
 
   it('should know when the game is over', function () {
-    assert.equal(this.board.gameOver, false)
+    assert.equal(this.board.gameOver, false);
   });
 
   it('knows how many pieces are on the board', function () {

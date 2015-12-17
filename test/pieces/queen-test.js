@@ -1,12 +1,11 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-var Game = require('../../lib/game')
-var Board = require('../../lib/board')
-var Square = require('../../lib/square')
-var Piece = require('../../lib/piece')
-var Queen = require('../../lib/pieces/queen')
-var King = require('../../lib/pieces/king')
+var Game = require('../../lib/game');
+var Board = require('../../lib/board');
+var Piece = require('../../lib/piece');
+var Queen = require('../../lib/pieces/queen');
+var King = require('../../lib/pieces/king');
 
 describe('Queen', function () {
 
