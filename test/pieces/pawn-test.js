@@ -151,7 +151,7 @@ describe('Pawn', function () {
     assert(!squareThree.piece);
   });
 
-  it('white pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+  xit('white pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
     let squareTwo = this.board.findSquare(5, 6);
     let promotionSquare = this.board.findSquare(5, 7);
     let pawn = new Pawn (squareTwo, "white");
@@ -165,7 +165,7 @@ describe('Pawn', function () {
     assert.equal(promotionSquare.piece.color, "white");
   });
 
-  it('black pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+  xit('black pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
     let squareTwo = this.board.findSquare(3, 1);
     let promotionSquare = this.board.findSquare(3, 0);
     let pawn = new Pawn (squareTwo, "black");
