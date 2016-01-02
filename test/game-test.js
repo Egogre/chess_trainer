@@ -3,6 +3,7 @@ const assert = chai.assert;
 
 var Game = require('../lib/game');
 var Board = require('../lib/board');
+var Loader = require('../lib/loader');
 var King = require('../lib/pieces/king');
 var Queen = require('../lib/pieces/queen');
 var Rook = require('../lib/pieces/rook');
@@ -12,9 +13,11 @@ var Pawn = require('../lib/pieces/pawn');
 describe('Game', function () {
   beforeEach( function () {
     this.board = new Board ();
+    this.loader = new Loader (this.board);
     this.game = new Game (this.board);
     this.board.game = this.game;
-    this.board.createSquares();
+    this.loader.createSquares();
+    this.board.squares = this.loader.squares;
     this.blackKingsSquare = this.board.findSquare(7, 7);
     this.blackKing = new King (this.blackKingsSquare, "black");
     this.blackKingsSquare.piece = this.blackKing;

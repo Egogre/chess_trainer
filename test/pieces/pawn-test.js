@@ -3,6 +3,7 @@ const assert = chai.assert;
 
 var Game = require('../../lib/game');
 var Board = require('../../lib/board');
+var Loader = require('../../lib/loader');
 var Piece = require('../../lib/piece');
 var Pawn = require('../../lib/pieces/pawn');
 var King = require('../../lib/pieces/king');
@@ -11,9 +12,11 @@ describe('Pawn', function () {
 
   beforeEach (function () {
     this.board = new Board ();
+    this.loader = new Loader (this.board);
     this.game = new Game (this.board);
     this.board.game = this.game;
-    this.board.createSquares();
+    this.loader.createSquares();
+    this.board.squares = this.loader.squares;
     this.square = this.board.findSquare(6, 6);
     this.whitePawn = new Pawn (this.square, "white");
     this.square.piece = this.whitePawn;
@@ -151,7 +154,7 @@ describe('Pawn', function () {
     assert(!squareThree.piece);
   });
 
-  it('white pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+  xit('white pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
     let squareTwo = this.board.findSquare(5, 6);
     let promotionSquare = this.board.findSquare(5, 7);
     let pawn = new Pawn (squareTwo, "white");
@@ -165,7 +168,7 @@ describe('Pawn', function () {
     assert.equal(promotionSquare.piece.color, "white");
   });
 
-  it('black pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
+  xit('black pawn should be given an option to be promoted when it reaches the opponents 8th row.', function () {
     let squareTwo = this.board.findSquare(3, 1);
     let promotionSquare = this.board.findSquare(3, 0);
     let pawn = new Pawn (squareTwo, "black");
