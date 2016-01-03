@@ -1,5 +1,6 @@
 require('./game-test.js');
 require('./board-test.js');
+require('./loader-test.js');
 require('./square-test.js');
 require('./piece-test.js');
 require('./pieces/pawn-test.js');
