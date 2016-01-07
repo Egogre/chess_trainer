@@ -2,11 +2,9 @@ const chai = require('chai');
 const assert = chai.assert;
 
 var Loader = require('../lib/loader');
-var Board = require('../lib/board');
 
 describe('Loader', function () {
   beforeEach (function () {
-    this.board = new Board ();
     this.loader = new Loader (this.board);
   });
 
@@ -26,10 +24,10 @@ describe('Loader', function () {
   it('should default to a normal board', function () {
     this.loader.createSquares();
     this.loader.addPiecesToBoard();
-    assert.equal(this.loader.squares[0].piece.type, "rook")
-    assert.equal(this.loader.squares[0].piece.color, "black")
-    assert.equal(this.loader.squares[63].piece.type, "rook")
-    assert.equal(this.loader.squares[63].piece.color, "white")
+    assert.equal(this.loader.squares[0].piece.type, "rook");
+    assert.equal(this.loader.squares[0].piece.color, "black");
+    assert.equal(this.loader.squares[63].piece.type, "rook");
+    assert.equal(this.loader.squares[63].piece.color, "white");
   });
 
 });

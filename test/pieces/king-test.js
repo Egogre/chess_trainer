@@ -1,9 +1,6 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-var Game = require('../../lib/game');
-var Board = require('../../lib/board');
-var Loader = require('../../lib/loader');
 var Square = require('../../lib/square');
 var Piece = require('../../lib/piece');
 var King = require('../../lib/pieces/king');
@@ -12,12 +9,6 @@ var Rook = require('../../lib/pieces/rook');
 describe('King', function () {
 
   beforeEach (function () {
-    this.board = new Board ();
-    this.loader = new Loader (this.board);
-    this.loader.createSquares();
-    this.board.squares = this.loader.squares;
-    this.game = new Game (this.board);
-    this.board.game = this.game;
     this.square = this.board.findSquare(1, 6);
     this.king = new King (this.square, "black");
     this.square.piece = this.king;

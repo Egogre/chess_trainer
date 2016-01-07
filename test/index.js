@@ -9,3 +9,4 @@ require('./pieces/knight-test.js');
 require('./pieces/bishop-test.js');
 require('./pieces/queen-test.js');
 require('./pieces/king-test.js');
+require('./test-helper.js');

@@ -1,9 +1,6 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-var Game = require('../lib/game');
-var Board = require('../lib/board');
-var Loader = require('../lib/loader');
 var Square = require('../lib/square');
 var Piece = require('../lib/piece');
 var King = require('../lib/pieces/king');
@@ -37,18 +34,12 @@ describe('Piece', function () {
   });
 
   it('should cannot move if result puts own king in check', function () {
-    var board = new Board ();
-    var loader = new Loader (board);
-    loader.createSquares();
-    board.squares = loader.squares;
-    var game = new Game (board);
-    board.game = game;
-    var square = board.findSquare(1, 6);
+    var square = this.board.findSquare(1, 6);
     var king = new King (square, "white");
     square.piece = king;
-    var squareTwo = board.findSquare(4,3);
-    var squareThree = board.findSquare(3,4);
-    var squareFour = board.findSquare(3,3);
+    var squareTwo = this.board.findSquare(4,3);
+    var squareThree = this.board.findSquare(3,4);
+    var squareFour = this.board.findSquare(3,3);
     let bishop = new Bishop (squareTwo, "black");
     squareTwo.piece = bishop;
     let pawn = new Pawn (squareThree, "white");
